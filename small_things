@@ -1,0 +1,133 @@
+1. In ES6, template literals use backticks ` and ${} to interpolate values into a string.
+
+2. typeof variable    (no parenthesis)
+
+3. Variables that have not been initialized store the primitive data type undefined.
+
+4. Undefined and NaN are falsy values
+
+5. Short-circuit evaluation: In a boolean condition, JavaScript assigns the truthy value to a variable if use || operator in your assignment, e.g. let defaultName = username || 'Stranger'
+
+6. Ternary operator: isNightTime? console.log('Turn on the lights!') : console.log('Turn off the lights');
+
+7. switch-case-default example
+      let athleteFinalPosition = 'first place';
+      switch(athleteFinalPosition) {
+        case 'first place':
+          console.log('You get the gold medal!');
+          break;
+        case 'second place':
+          console.log('You get the silver medal!');
+          break;
+        case 'third place':
+          console.log('You get the bronze medal!');
+          break;
+        default:
+          console.log('No medal awarded.');
+          break;
+      }
+      
+8. Methods to create function:
+    (1) function doSomeThing(par1, par2, par3 = val) { do some thing; return somthing}
+    (2) const func = function(par1, par2, par3 = val) { do some thing; return something}  # this is like R
+    (3) Arrow Functions:
+        Arrow functions remove the need to type out the keyword function every time you need to create a function. 
+        Instead, you first include the parameters inside the ( ) 
+        and then add an arrow => that points to the function body surrounded in { }
+    (4) Concise boday arrow functions: 
+        const plantNeedsWater = day => day === 'Wed' ? true : false;
+          a. The parentheses around num have been removed, since it has a single parameter.
+          b. The curly braces { } have been removed since the function consists of a single-line block.
+          c. The return keyword has been removed since the function consists of a single-line block.
+          
+9. In global scope, variables are declared outside of blocks. These variables are called global variables. Because global variables are not bound inside a block, they can be accessed by any code in the program, including code in blocks. When a variable is defined inside a block, it is only accessible to the code within the curly braces {}. We say that variable has block scope because it is only accessible to the lines of code within that block.
+
+10. Elements in an array declared with const remain mutable. Meaning that we can change the contents of a const array, but cannot reassign a new array or a different value.
+
+11. .push() allows us to add items to the end of an array. [Note: multiple items]
+        
+12. Iterator funcs:
+    .forEach() is used to execute the same code on every element in an array but does not change the array and returns undefined.
+    .map() executes the same code on every element in an array and returns a new array with the updated elements.
+    .filter() checks every element in an array to see if it meets certain criteria and returns a new array with the elements that return truthy for the criteria.
+    .findIndex() returns the index of the first element of an array which satisfies a condition in the callback function. It returns -1 if none of the elements in the array satisfies the condition.
+    .reduce() iterates through an array and takes the values of the elements and returns a single value.
+    All iterator methods takes a callback function that can be pre-defined, or a function expression, or an arrow function.
+    
+13. JavaScript Objects:
+    The object that a method belongs to is called the calling object.
+    The this keyword refers the calling object and can be used to access properties of the calling object.
+    Methods do not automatically have access to other internal properties of the calling object.
+    The value of this depends on where the this is being accessed from.
+    We cannot use arrow functions as methods if we want to access other internal properties.
+    JavaScript objects do not have built-in privacy, rather there are conventions to follow to notify other developers about the intent of the code.
+    The usage of an underscore before a property name means that the original developer did not intend for that property to be directly changed.
+    Setters and getter methods allow for more detailed ways of accessing and assigning properties.
+    Factory functions allow us to create object instances quickly and repeatedly.
+    There are different ways to use object destructuring: one way is the property value shorthand and another is destructured assignment.
+    
+14. Some string functions:
+
+      function countCharacter(inputString, inputCharacter) {
+        let count = 0;
+        let string = inputString.toLowerCase();
+        let character = inputCharacter.toLowerCase();
+          for (let i = 0; i < string.length; i++) {
+            if (string[i] === character) {
+               count++;
+            }
+          }
+        return count; 
+      };
+
+      function capitalizeFirstCharacterOfWords(string) {
+        let arr = string.split(" ");  
+          for (let i = 0; i < arr.length; i++) {  
+            let word = arr[i];
+              arr[i] = word[0].toUpperCase() + word.substring(1); 
+          }
+        return arr.join(" "); 
+      };
+
+
+      function reverseWord(word) {
+        return word.split("").reverse().join("");
+      };
+
+      function reverseAllWords(sentence) {
+        let words = sentence.split(" ");
+          for (let i = 0; i < words.length; i++) {
+            words[i] = reverseWord(words[i]);
+          }
+         return words.join(" ");
+      };
+
+
+      function replaceFirstOccurence(string, toBeReplaced, replaceWith) {
+        return string.replace(toBeReplaced, replaceWith);
+      };
+
+
+      function replaceAllOccurrences(string, toBeReplaced, replaceWith) {
+        return string.split(toBeReplaced).join(replaceWith);
+      };
+
+      function encode(string) {
+        let replacementObject = { "a": "@", "s": "$", "i": "!", "o":"0" };
+          for (let key in replacementObject) {
+            string = replaceAllOccurrences(string, key, replacementObject[key]); 
+          }	
+          return string;
+      };
+
+
+      function displayMessage() {
+        console.log(countCharacter("What is the color of the sky?", "t"));
+        console.log(capitalizeFirstCharacterOfWords("What is the color of the sky?"));
+        console.log(reverseWord("What is the color of the sky?"));
+        console.log(reverseAllWords("What is the color of the sky?"));
+        console.log(replaceFirstOccurence("What is the color of the sky?", "sky", "water"));
+        console.log(encode("What is the color of the sky?"));
+      }
+
+      displayMessage();
